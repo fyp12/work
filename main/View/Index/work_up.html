@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>职员添加</title>
+    <script type="text/javascript" src="<?php echo arCfg('PATH.PUBLIC'); ?>js/jquery.min.js"></script>
+    <style>
+        form{
+            text-align: center;
+        }
+        span{
+            font-size: 20px;
+            line-height: 40px;
+            padding-left: 0px;
+        }
+        input,select{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<a href="<?php echo arU('Index/salary'); ?>">查看工资</a>
+<a href="<?php echo arU('Index/index'); ?>">查看业绩</a>
+<h1 align="center">双流惠康职员信息修改</h1>
+<form action="work_up" method="post">
+<input type="hidden" name="id" id="id" value="<?php echo $worker['id']; ?>"/> 
+<span>姓 名：<input type="text" name="name" id="name" value="<?php echo $worker['name']; ?>"/></span><br/>
+<span>工 号：<input type="text" name="wid" id="wid" value="<?php echo $worker['wid'];?>"/></span> <br/>
+<span>性 别：<input type="text" name="gender" id="gender" value="<?php echo $worker['gender'];?>"/></span><br/>   
+<span>手机号：<input type="text" name="phone" id="phone" value="<?php echo $worker['phone']; ?>"/></span> <br/> 
+<!-- <span>所在门店：<input type="text" name="store" id="store" value="<?php echo $worker['store']; ?>"/></span><br/> -->
+<span>所在门店：
+    <select name="store" id="store">
+        <?php foreach($stores as $value){?>
+        <option<?php if(strcmp($worker['store'],$value['name'])==0){?> selected=true<?php } ?>><?php echo $value['name'];?></option>
+        <?php }?>
+    </select>
+</span><br/>
+    <span><input type="submit" value="提交"/>&nbsp;&nbsp;
+    <input type="reset" onclick="javascript:history.back(-1);" id="qx" value="取消"/></span>
+</form>
+</body>
+
+</html>

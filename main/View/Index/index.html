@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双流惠康业绩管理表</title>
+    <style>
+        table{
+            border-collapse:collapse;
+        }
+        td{
+            border:1px solid black;
+            width:80px;
+            height:30px;
+            text-align: center;
+        }
+        .dailyTotal{
+            width:220px
+        }
+    </style>
+</head>
+<body>
+    <a href="<?php echo arU('Index/salary'); ?>">查看工资</a>
+    <a href="<?php echo arU('Index/worker'); ?>">职员管理</a>
+    <h1 align="center">双流惠康业绩管理表</h1>
+    <div align="center">
+        <form action="<?php echo arU('Index/index',array('type' => 1)); ?>" method="post">
+            年份：<select name="year" id="year">
+            <?php for($i = 2016; $i<=2048; $i++): ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+            <?php endfor; ?>
+            </select>年
+            月份：<select name="month" id="month">
+            <?php for($i = 1; $i<=12; $i++): ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+            <?php endfor; ?>
+            </select>月
+            <input type="submit" value="查询">
+        </form>
+    </div>
+    <div align="center">
+        <form action="<?php echo arU('',array('type' => 2)); ?>" method="post">
+            姓名：<select name="name" id="">
+
+            </select>
+        </form>
+
+    </div>
+    <br>
+    <table align="center">
+        <tr>
+            <td>日期</td><td>王梅</td><td>曹修贵</td><td>郑云波</td><td>黄科</td><td>梁国锋</td><td>王灏</td><td>余中郎</td><td>胡波</td><td>朱磊</td><td>陈希果</td><td>曹兵</td><td class="dailyTotal">每日统计</td>
+        </tr>
+        <tr>
+            <td>2016-8-1</td><td>120</td><td>120</td><td>120</td><td>120</td><td>120</td><td>120</td><td>120</td><td>120</td><td>120</td><td>120</td><td>120</td><td class="dailyTotal">王卡：500*1； 王药：105*1； 王药：105*1； 王药：105*1；</td>
+        </tr>
+
+        <tr>
+            <td>每月合计</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="dailyTotal"></td>
+        </tr>
+    </table>
+</body>
+</html>

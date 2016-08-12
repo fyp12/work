@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <style>
+        td{
+            font-size:18px
+        }
+        .input{
+            width:200px;
+            height:30px;
+        }
+        table{
+            border-spacing:30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">欢迎登录</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div align="center">
+        <form action="<?php echo arU('Index/login'); ?>" method="post">
+            <table>
+                <tr><td>账号：</td><td><input class="input" type="text" name="username"></td></tr>
+                <tr><td>密码：</td><td><input class="input" type="password" name="password"></td></tr>
+            </table>
+            <input style="width:80px;height:30px" type="submit" value="登录">
+
+        </form>
+    </div>
+</body>
+</html>
