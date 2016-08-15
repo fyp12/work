@@ -17,7 +17,7 @@
         .dailyTotal{
             width:220px
         }
-        table td:last-child{
+        table td:last-child,.tp1{
             width:120px;         
         }
     </style>
@@ -30,13 +30,12 @@
 <h1 align="center">双流惠康职员管理表</h1>
 <table align="center">
     <?php if(!empty($workers)) {?>
-    <tr><?php echo AR_APP_PATH. 'Public' . DS . 'css' . DS . $bundle . '.css',AR_ROOT_PATH;
-     ?>
+    <tr>
         <td>姓名</td>
         <td>工号</td>
         <td>性别</td>
         <td>手机号</td>
-        <td>所在门店</td>
+        <td class="tp1">所在门店</td>
         <td>操作</td>
     </tr>
     <?php foreach($workers as $worker): ?>
@@ -45,7 +44,7 @@
         <td><?php echo $worker['wid']; ?></td>
         <td><?php echo $worker['gender']; ?></td>
         <td><?php echo $worker['phone']; ?></td>
-        <td><?php echo $worker['store']; ?></td>
+        <td class="tp1"><?php echo $worker['store']; ?></td>
         <td><a href="javascript:deleteNode(<?php echo $worker['id']; ?>)"><img width="30px" height="30px" src="<?php echo arCfg('PATH.PUBLIC'); ?>images/delete.png" /></a>&nbsp;|&nbsp;
             <a href="<?php echo arU('Index/work_up',array('id'=>$worker['id'])); ?>">修改</a></td>
     </tr>
