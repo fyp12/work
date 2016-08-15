@@ -8,7 +8,7 @@
         table{
             border-collapse:collapse;
         }
-        td{
+        tr,td{
             border:1px solid black;
             width:80px;
             height:30px;
@@ -18,17 +18,20 @@
             width:220px
         }
         table td:last-child{
-            width:120px;
+            width:120px;         
         }
     </style>
 </head>
 <body>
 <a href="<?php echo arU('Index/salary'); ?>">查看工资</a>
 <a href="<?php echo arU('Index/index'); ?>">查看业绩</a>
+<a href="<?php echo arU('Store/store'); ?>">门店管理</a>
 <a href="<?php echo arU('Index/work_add'); ?>">职工添加</a>
 <h1 align="center">双流惠康职员管理表</h1>
 <table align="center">
-    <tr>
+    <?php if(!empty($workers)) {?>
+    <tr><?php echo AR_APP_PATH. 'Public' . DS . 'css' . DS . $bundle . '.css',AR_ROOT_PATH;
+     ?>
         <td>姓名</td>
         <td>工号</td>
         <td>性别</td>
@@ -43,16 +46,18 @@
         <td><?php echo $worker['gender']; ?></td>
         <td><?php echo $worker['phone']; ?></td>
         <td><?php echo $worker['store']; ?></td>
-        <td><a href="javascript:deleteNode(<?php echo $worker['id']; ?>)"><img width="30px" height="30px" src="<?php echo arCfg('PATH.PUBLIC'); ?>images/delete.png" /></a>&nbsp;|&nbsp;<a href="work_up?id=<?php echo $worker['id']; ?>">修改</a></td>
+        <td><a href="javascript:deleteNode(<?php echo $worker['id']; ?>)"><img width="30px" height="30px" src="<?php echo arCfg('PATH.PUBLIC'); ?>images/delete.png" /></a>&nbsp;|&nbsp;
+            <a href="<?php echo arU('Index/work_up',array('id'=>$worker['id'])); ?>">修改</a></td>
     </tr>
-    <?php endforeach;?>
+    <?php endforeach;}else echo "<tr style='border:transparent'><td style='border:transparent'>暂无员工信息！</td></tr>";?>
 </table>
 </body>
 <script>
-    function deleteNode(id){
+     function deleteNode(id){
+        // alert(JSV.PATH_APP_SERVER+'Store/storeDelete');
         layer.confirm('确定要删除吗?',function(){
-            $.post(JSV.PATH_APP_SERVER+'Index/workerDelete',{id:id},function(res){
-                if(res.success=='1'){
+            $.post("<?php echo arU('Index/workerDelete'); ?>",{id:id},function(res){
+                if(res.success == 1){
                     layer.msg('操作成功');
                     location.reload();
                 }else{
@@ -63,5 +68,5 @@
         })
     }
 </script>
-<?php include arCfg('DIR.SEG') . 'Sys/js.seg'; ?>
+<?php include arCfg('DIR.SEG').'Sys/js.seg'; ?>
 </html>

@@ -8,7 +8,7 @@ return array(
     // 模板后缀
     'TPL_SUFFIX' => 'html',
     // 关闭 trace 显示
-    'DEBUG_SHOW_TRACE' => true,
+    'DEBUG_SHOW_TRACE' => false,
 
     // 组件配置开始
     'components' => array(

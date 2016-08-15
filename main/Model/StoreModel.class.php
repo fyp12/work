@@ -21,20 +21,20 @@ class StoreModel extends ArModel
                ->queryAll();
         return $result;
     }
-     public static function getId($name)
-    {
-        $result=self::model()->getDb()
-                ->where("name='".$name."'")
-               ->queryAll();
-               //var_dump($result);exit();
-        return $result[0]['id'];
-    }
+    //  public static function getId($name)
+    // {
+    //     $result=self::model()->getDb()
+    //             ->where("name='".$name."'")
+    //            ->queryAll();
+    //            //var_dump($result);exit();
+    //     return $result[0]['id'];
+    // }
      public static function getName($id)
     {
         $result=self::model()->getDb()
                 ->where("id='".$id."'")
-               ->queryAll();
-               //var_dump($result);exit();
-        return $result[0]['name'];
+               ->queryRow();
+              // var_dump($result);exit();
+        return $result['name'];
     }
 }

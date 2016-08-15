@@ -82,8 +82,17 @@ class IndexController extends ArController
             $this->assign(array('workers' => $workers));
             $this->display();
         }
-        $workers = WorkerModel::model()->getDb()->queryAll();
-        $this->assign(array('workers' => $workers));
+        $worker = WorkerModel::model()->getDb()->queryAll();
+        foreach ($worker as $work) {
+            # code...
+            //var_dump($workers['store']);
+            $work['store']=StoreModel::getName($work['store']);
+            $workers[]=$work;
+        }
+        //var_dump($workers);
+        if(!empty($workers)){
+            $this->assign(array('workers' => $workers));
+        }
         $this->display();
     }
     public function work_addAction()
@@ -91,7 +100,7 @@ class IndexController extends ArController
         $data=arPost();
         //var_dump($data);
         if(!(empty($data))){
-            $data['store']=StoreModel::getId($data['store']);
+            //$data['store']=StoreModel::getId($data['store']);
             //var_dump($data['store']);exit();
             $result=WorkerModel::model()->getDb()->insert($data);
             if($result){
@@ -106,18 +115,15 @@ class IndexController extends ArController
             $this->display();
         }
     }
-    public function storeAction()
-    {
-        var_dump(StoreModel::queryName());
-    }
     public function work_upAction()
     {
         $data = arPost();
         $id=arGet('id'); 
+        //var_dump($data,$id);exit();
         if (!empty($id) && empty($data)) {
             $workers = WorkerModel::model()->getDb()
                 ->where(array('id' => $id))
-                ->queryAll()[0];
+                ->queryRow();
             //var_dump($workers);
             $workers['store']=StoreModel::getName($workers['store']);
             $this->assign(array('stores'=>StoreModel::queryAll()));
@@ -126,7 +132,7 @@ class IndexController extends ArController
         }
         else if (!empty($data) && empty($id)) {
             $id=$data['id'];
-            $data['store']=StoreModel::getId($data['store']);
+            //$data['store']=StoreModel::getId($data['store']);
             $workers = WorkerModel::model()->getDb()
                 ->where(array('id' => $id))
                 ->update($data);
@@ -137,7 +143,7 @@ class IndexController extends ArController
             // echo"<script>alert('操作错误！');location.href='worker';</script>";
         }
     }
-    public function workerDeleteAction()
+     public function workerDeleteAction()
     {
         $id = arPost('id');
         if ($id) {

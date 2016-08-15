@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>门店添加</title>
+    <script type="text/javascript" src="<?php echo arCfg('PATH.PUBLIC'); ?>js/jquery.min.js"></script>
+    <style>
+        form{
+            text-align: center;
+        }
+        span{
+            font-size: 20px;
+            line-height: 40px;
+            padding-left: 0px;
+        }
+       input{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<a href="<?php echo arU('Index/salary'); ?>">查看工资</a>
+<a href="<?php echo arU('Index/index'); ?>">查看业绩</a>
+<h1 align="center">双流惠康门店添加</h1>
+<form action="<?php echo arU("Store/store_add")?>" method="post">
+<span>门店名称：<input type="text" name="name" id="name"/></span><br/>
+<span>门店地址：<input type="text" name="address" id="address"/></span> <br/>
+<span>联系电话：<input type="text" name="phone" id="phone"/></span><br/>   
+<span><input type="submit" value="提交"/>&nbsp;&nbsp;
+<input type="button" onclick="javascript:history.back(-1);" id="qx" value="取消"/></span>
+</form>
+</body>
+</html>

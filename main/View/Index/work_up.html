@@ -22,7 +22,7 @@
 <a href="<?php echo arU('Index/salary'); ?>">查看工资</a>
 <a href="<?php echo arU('Index/index'); ?>">查看业绩</a>
 <h1 align="center">双流惠康职员信息修改</h1>
-<form action="work_up" method="post">
+<form action="<?php echo arU('Index/work_up')?>" method="post">
 <input type="hidden" name="id" id="id" value="<?php echo $worker['id']; ?>"/> 
 <span>姓 名：<input type="text" name="name" id="name" value="<?php echo $worker['name']; ?>"/></span><br/>
 <span>工 号：<input type="text" name="wid" id="wid" value="<?php echo $worker['wid'];?>"/></span> <br/>
@@ -32,7 +32,7 @@
 <span>所在门店：
     <select name="store" id="store">
         <?php foreach($stores as $value){?>
-        <option<?php if(strcmp($worker['store'],$value['name'])==0){?> selected=true<?php } ?>><?php echo $value['name'];?></option>
+        <option  value="<?php echo $value['id'];?>" <?php if(strcmp($worker['store'],$value['name'])==0){?> selected=true<?php } ?> ><?php echo $value['name'];?></option>
         <?php }?>
     </select>
 </span><br/>
